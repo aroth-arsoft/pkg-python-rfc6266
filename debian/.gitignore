@@ -1,0 +1,8 @@
+/*.debhelper
+/*.substvars
+/tmp/
+/files
+/*.debhelper.log
+/python-*/
+/python3-*/
+/debhelper-build-stamp

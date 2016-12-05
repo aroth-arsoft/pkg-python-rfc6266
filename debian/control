@@ -1,0 +1,23 @@
+Source: python-rfc6266
+Section: admin
+Priority: optional
+Maintainer: Andreas Roth <aroth@arsoft-online.com>
+Standards-Version: 3.9.8
+Build-Depends: debhelper (>= 9), dh-python, python (>= 2.7), python3 (>= 3.4),
+ python-setuptools, python3-setuptools
+X-Python-Version: >=2.7
+X-Python3-Version: >=2.4
+
+Package: python-rfc6266
+Section: python
+Architecture: all
+Depends: ${python:Depends}, ${misc:Depends}
+Description: Parse and generate Content-Disposition headers
+ python module to parse and generate Content-Disposition headers
+
+Package: python3-rfc6266
+Section: python
+Architecture: all
+Depends: ${python3:Depends}, ${misc:Depends}
+Description: Parse and generate Content-Disposition headers
+ python module to parse and generate Content-Disposition headers

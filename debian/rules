@@ -1,0 +1,25 @@
+#!/usr/bin/make -f
+
+buildvers := $(shell pyversions -sv)
+#build3vers := $(shell py3versions -sv)
+
+export PYBUILD_NAME=python-rfc6266
+export PYBUILD_DISABLE=test
+
+export PYBUILD_DESTDIR_python2=debian/python-rfc6266/
+export PYBUILD_DESTDIR_python3=debian/python3-rfc6266/
+
+# Don't compress .py files
+DEB_COMPRESS_EXCLUDE := .py
+
+TARGET_DISTRIBUTION := $(shell dpkg-parsechangelog  | awk '/Distribution/ { print $$2}')
+SUBSTVARS=
+
+%:
+	dh $@ --with python2,python3 --buildsystem=pybuild
+
+override_dh_clean:
+	dh_clean
+	test -f rfc6266.egg-info/SOURCES.txt && sed '/setup\.cfg/d' -i rfc6266.egg-info/SOURCES.txt || true
+	test -f rfc6266.egg-info/requires.txt && ( cat rfc6266.egg-info/requires.txt | tr -d '\n' > rfc6266.egg-info/requires_.txt; mv rfc6266.egg-info/requires_.txt rfc6266.egg-info/requires.txt )  || true
+
